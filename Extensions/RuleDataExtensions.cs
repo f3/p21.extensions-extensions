@@ -20,7 +20,7 @@ namespace P21.Extensions.Supplemental.Extensions
         /// Subscribing to a static event will root the subscribing instance and prevent 
         /// the garbage collector from ever collecting it. See the example.</remarks>
         /// <example>Usage from within a Business Rule&apos;s <c>Execute</c> method<br/>
-        /// <code>private static void OnRuleDataAccessException(object sender, Exception e)
+        /// <code>private static void OnRuleException(object sender, Exception e)
         /// {
         ///     // Handle the exception. Here, we are just going to log the exception:
         ///     ((Rule)sender).Log.AddAndPersist(e.ToString());
@@ -28,7 +28,7 @@ namespace P21.Extensions.Supplemental.Extensions
         /// public override RuleResultData ExecuteRule()
         /// {
         ///     // subscribe
-        ///     RuleDataExtensions.RuleDataAccessException += OnRuleDataAccessException;
+        ///     RuleDataExtensions.RuleException += OnRuleException;
         ///     
         ///     try
         ///     {
@@ -36,16 +36,16 @@ namespace P21.Extensions.Supplemental.Extensions
         ///         // ...
         ///     } finally {
         ///         // unsubscribe to avoid missed GC of this rule object
-        ///         RuleDataExtensions.RuleDataAccessException -= OnRuleDataAccessException;
+        ///         RuleDataExtensions.RuleException -= OnRuleException;
         ///     }
         /// }</code>
         /// </example>
-        public static event EventHandler<BusinessRuleException> RuleDataAccessException
+        public static event EventHandler<BusinessRuleException> RuleException
         {
-            add { ruleDataAccessException += value; }
-            remove { ruleDataAccessException -= value; }
+            add { ruleException += value; }
+            remove { ruleException -= value; }
         }
-        private static EventHandler<Exception> ruleDataAccessException;
+        private static EventHandler<Exception> ruleException;
 
         /// <summary>
         /// Returns a <see cref="DataTable"/> for the given Business Rule class name
