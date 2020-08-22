@@ -35,7 +35,7 @@ namespace P21.Extensions.Supplemental.Exceptions
     /// Represents errors that occur during the processing of a <see cref="System.Data.DataTable"/>
     /// within a <see cref="P21.Extensions.BusinessRule.Rule"/>'s <see cref="P21.Extensions.BusinessRule.Rule.Data.Set">data set</see>.
     /// </summary>
-    public sealed class RuleDataTableException : BusinessRuleException
+    public class RuleDataTableException : BusinessRuleException
     {
         public readonly string TableName;
 
